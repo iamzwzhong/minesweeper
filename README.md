@@ -1,6 +1,6 @@
 # Minesweeper-Clone
 
-Foobar is a Python library for dealing with word pluralization.
+Minesweeper clone built with React front-end
 
 ## How To Play
 
