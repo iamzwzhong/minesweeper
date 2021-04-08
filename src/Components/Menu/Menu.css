@@ -4,6 +4,10 @@ html, body {
     margin: 0;
   }
 
+img {
+    width:100%;
+}
+
 .menuOuterContainer {
     display: flex;
     justify-content: center;
@@ -28,6 +32,8 @@ html, body {
     width: 51%;
     font-size: 20px;
     font-weight: 600;
+    max-width:500px;
+    min-width:200px;
 }
 
 .mt-20 {
