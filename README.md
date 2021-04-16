@@ -4,7 +4,7 @@ Minesweeper clone built with React front-end
 
 ## How To Play
 
-This project is deployed on Netlify [here](https://minesweeper-z.netlify.app/).
+This project is deployed on Heroku [here](https://minesweeper-z.herokuapp.com/).
 
 ## Functionalities
 
@@ -17,6 +17,8 @@ This project is deployed on Netlify [here](https://minesweeper-z.netlify.app/).
 * Saves the best time and displays it
 * Ability to place a flag on possible mine locations
 * Ability to reset the game at any time
+* Save your scores to a leaderboard
+* View leaderboards separated by difficulty
 
 ## Screenshots
 
