@@ -19,6 +19,9 @@ const Menu = () => {
             <Link to={`/game?height=16&width=30&bombs=99`}>
               <button className='button mt-20 exp' type="submit">Expert</button>
             </Link>
+            <Link to={`/leaderboards`}>
+              <button className='button mt-20 leaderboards' type="submit">Leaderboards</button>
+            </Link>
         </div>
       </div>
         

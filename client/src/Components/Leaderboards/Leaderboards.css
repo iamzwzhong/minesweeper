@@ -1,0 +1,60 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+.leaderboardsOuterContainer {
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    align-items: center;
+    background-color: #1A1A1D;
+    margin: 0;
+}
+
+.l_button {
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979FF;
+  padding: 20px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  width: 25%;
+  font-size: 20px;
+  font-weight: 600;
+  max-width:400px;
+  min-width:200px;
+  color: white;
+}
+
+.btn-margin {
+  margin: 15px;
+}
+
+.beg {
+  color:lime;
+}
+
+.button:hover {
+  background: blue;
+}
+
+.int {
+  color:cyan;
+}
+
+.exp {
+  color:red;
+}
+
+.def {
+  color: white;
+  background: green;
+}
+
+.line {
+  width: 85%;
+}

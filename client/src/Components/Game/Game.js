@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 
 import { calculateWinner, placeBombs, findZeroes, revealBombs, secondsToTimer} from '../../helpers';
+import AddModal from '../LeaderboardEntry/AddModal'
 import Board from '../Board';
 
 import flagIcon from '../../Icons/flag.png';
@@ -27,6 +28,7 @@ const Game = ({location}) => {
     const [timer, setTimer] = useState(null);
     const [bestTime, setBestTime] = useState(null);
 
+    const [modalVisible, setModalVisible] = useState(true);
     const [winner, setWinner] = useState(null);
 
     useEffect(() => {
@@ -34,6 +36,7 @@ const Game = ({location}) => {
         height = parseInt(height);
         width = parseInt(width);
         bombs = parseInt(bombs);
+
         setHeight(height);
         setWidth(width);
         setBombs(bombs);
@@ -103,6 +106,10 @@ const Game = ({location}) => {
         }
     }
 
+    const toggleModal = () => {
+        setModalVisible(false);
+    };
+
     return (
         <div className='gameOuterContainer'>
             <div className='header'>
@@ -117,9 +124,9 @@ const Game = ({location}) => {
             </div>
             <Board key={boardID} squares={board} onClick={handleClick} width = {width} height={height} gameOver = {gameOver} flagCount={flagCount}/>
             <div className='gameMenuContainer'>
-                {winner === true ? (<div className="postMessage winner">Nice job! Play again?</div>) 
-                : winner === false ? (<div className="postMessage lost">Better luck next time!</div>) 
+                {winner === false ? (<div className="postMessage lost">Better luck next time!</div>) 
                 : <div></div>}
+                <AddModal winner = {winner} modalVisible={modalVisible} onClick={toggleModal} score={seconds} bombs={bombs}/>
                 <button className ='button mt-20' onClick={resetGame}>Reset</button>
                 <Link to={`/`}>
                 <button className='button mt-20' type="submit">Menu</button>

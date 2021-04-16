@@ -34,6 +34,7 @@ img {
     font-weight: 600;
     max-width:500px;
     min-width:200px;
+    color: white;
 }
 
 .mt-20 {
@@ -44,10 +45,19 @@ img {
     color:lime;
 }
 
+.button:hover {
+    background: blue;
+}
+
 .int {
     color:cyan;
 }
 
 .exp {
     color:red;
+}
+
+.leaderboards {
+    color: white;
+    background: green;
 }
