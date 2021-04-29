@@ -19,6 +19,7 @@ This project is deployed on Heroku [here](https://minesweeper-z.herokuapp.com/).
 * Ability to reset the game at any time
 * Save your scores to a leaderboard
 * View leaderboards separated by difficulty
+* Added ability to double click to help clear area quicker
 
 ## Screenshots
 
