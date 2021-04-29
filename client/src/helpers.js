@@ -124,6 +124,62 @@ export function findZeroes(squares, x, y, height, width) {
 
 }
 
+export function canDoubleClick(squares, x, y, height, width, flagged) {
+  let directions = [];
+  const left = [-1,0];
+  const right = [1,0];
+  const up = [0,1];
+  const down = [0,-1];
+  const topleft = [-1,1];
+  const topright = [1,1];
+  const downleft = [-1,-1];
+  const downright = [1,-1];
+
+  directions = [left,right,up,down,topleft,topright,downleft,downright];
+  let toClick = []
+  let index = y * width + x;
+  let nearbyMines = squares[index];
+
+  for (let i = 0; i < directions.length; i++) {
+    let next_x = x + directions[i][0];
+    let next_y = y + directions[i][1];
+
+    if (0 <= next_x && next_x < width && 0 <= next_y && next_y < height) {
+      index = next_y*width + next_x;
+      if (flagged.has(index)) {
+        nearbyMines -= 1;
+      }
+      else{
+        if (squares[index] < 0 || squares[index] === null || squares[index] === 'B') {
+          toClick.push(index);
+        }
+      }
+    }
+
+  }
+
+  let lose = false;
+
+  if (nearbyMines == 0) {
+    for (let i = 0; i < toClick.length; i++) {
+      if (squares[toClick[i]] < 0) {
+        squares[toClick[i]] = squares[toClick[i]] * -1;
+      }
+      else if (squares[toClick[i]] === null) {
+        const y1 = Math.floor(toClick[i] / width);
+        const x1 = toClick[i] % width;
+        findZeroes(squares,x1,y1,height,width);
+      }
+      else if (squares[toClick[i]] === 'B')  {
+        lose = true;
+        revealBombs(squares, toClick[i]);
+        break;
+      }
+    }
+  }
+  return lose;
+}
+
 export function revealBombs(squares,index) {
   squares[index] = "EB";
   for (let i = 0; i < squares.length; i++) {

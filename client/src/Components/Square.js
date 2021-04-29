@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 
+import DoubleClick from './DoubleClick';
+
 import flagIcon from '../Icons/flag.png';
 import mineIcon from '../Icons/mine.png';
+
 
 const colors = {
     1: 'blue',
@@ -14,7 +17,7 @@ const colors = {
     8: 'gray'
 }
 
-const Square = ({value, onClick, gameOver, flagCount}) => {
+const Square = ({value, onClick, onDoubleClick, gameOver, flagCount, index}) => {
     const [flagged, setFlagged] = useState(false);
 
     let bg_color = 'lightblue';
@@ -52,15 +55,13 @@ const Square = ({value, onClick, gameOver, flagCount}) => {
     const flag = (e)=> {
         e.preventDefault();
         setFlagged(!flagged);
-        flagCount(flagged);
+        flagCount(flagged,index);
     }
     
     return (    
     value > 0
     ?
-    <button style={style}>
-        {value}
-    </button>
+    <DoubleClick onDoubleClick={onDoubleClick} value = {value} style = {style}/>
     :value === 'BB' || value === 'EB'
     ?
     <img src={mineIcon} style={imgstyle}/>

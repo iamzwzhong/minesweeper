@@ -7,8 +7,8 @@ const LeaderboardEntry = ({ leaderboardEntries }) => {
 
     return (
         <div className="container">
-            {leaderboardEntries.map((leaderboardEntry) => (
-                <div className="entry">
+            {leaderboardEntries.map((leaderboardEntry,i) => (
+                <div key={i} className="entry">
                     <div className="name">
                         {leaderboardEntry.name}
                     </div>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 
-import { calculateWinner, placeBombs, findZeroes, revealBombs, secondsToTimer} from '../../helpers';
+import { calculateWinner, placeBombs, findZeroes, revealBombs, secondsToTimer, canDoubleClick} from '../../helpers';
 import AddModal from '../LeaderboardEntry/AddModal'
 import Board from '../Board';
 
@@ -30,6 +30,8 @@ const Game = ({location}) => {
 
     const [modalVisible, setModalVisible] = useState(true);
     const [winner, setWinner] = useState(null);
+
+    const [flaggedIndex , setFlaggedIndex] = useState(new Set());
 
     useEffect(() => {
         let {height,width,bombs} = queryString.parse(location.search);
@@ -85,6 +87,36 @@ const Game = ({location}) => {
         setBoard(boardCopy);
     }
 
+    const doubleClick = i => {
+        const boardCopy = [...board];
+        const y = Math.floor(i / width);
+        const x = i % width;
+        let lose = canDoubleClick(boardCopy, x, y, height, width, flaggedIndex);
+        if (lose) {
+            console.log('lose');
+            setGameOver(true);
+            clearInterval(timer);
+            setWinner(false);
+            setBoard(boardCopy);
+            return;
+        }
+
+        let checkwin = calculateWinner(boardCopy);
+        if (checkwin) {
+            console.log(winner);
+            setGameOver(true);
+            clearInterval(timer);
+            if (bestTime === null) {
+                setBestTime(seconds);
+            }
+            else {
+                setBestTime(Math.min(bestTime,seconds));
+            }
+            setWinner(true);
+        }
+        setBoard(boardCopy);
+    }
+
     const resetGame = () => {
         setBoard(placeBombs(bombs, height, width));
         setBoardID(boardID+1);
@@ -95,15 +127,22 @@ const Game = ({location}) => {
         setTimer(null);
         setSeconds(0);
         setWinner(null);
+        flaggedIndex.clear();
+        setFlaggedIndex(flaggedIndex);
+        setModalVisible(true);
     }
 
-    const flagCount = (flagged) => {
+    const flagCount = (flagged, index) => {
+
         if (flagged) {
             setBombsDisplayed(bombsDisplayed+1);
+            flaggedIndex.delete(index);
         }
         else {
             setBombsDisplayed(bombsDisplayed-1);
+            flaggedIndex.add(index);
         }
+        setFlaggedIndex(flaggedIndex);
     }
 
     const toggleModal = () => {
@@ -113,16 +152,16 @@ const Game = ({location}) => {
     return (
         <div className='gameOuterContainer'>
             <div className='header'>
-                <img src={trophyIcon} class="imgStyle"/>
+                <img src={trophyIcon} className="imgStyle"/>
                 {secondsToTimer(bestTime)}
                 <br></br>
-                <img src={clockIcon} class="imgStyle"/>
+                <img src={clockIcon} className="imgStyle"/>
                 {secondsToTimer(seconds)}
                 <br></br>
-                <img src={flagIcon} class="imgStyle"/>
+                <img src={flagIcon} className="imgStyle"/>
                 {bombsDisplayed}  
             </div>
-            <Board key={boardID} squares={board} onClick={handleClick} width = {width} height={height} gameOver = {gameOver} flagCount={flagCount}/>
+            <Board key={boardID} squares={board} onClick={handleClick} onDoubleClick = {doubleClick} width = {width} height={height} gameOver = {gameOver} flagCount={flagCount}/>
             <div className='gameMenuContainer'>
                 {winner === false ? (<div className="postMessage lost">Better luck next time!</div>) 
                 : <div></div>}
