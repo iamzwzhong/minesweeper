@@ -1,6 +1,6 @@
 # Minesweeper-Clone
 
-Minesweeper clone built with React front-end
+Minesweeper clone built with PERN stack
 
 ## How To Play
 
