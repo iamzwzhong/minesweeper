@@ -1,63 +1,64 @@
-html, body {
-    font-family: 'Roboto', sans-serif;
-    padding: 0;
-    margin: 0;
-  }
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
 
 img {
-    width:100%;
+  width: 100%;
 }
 
 .menuOuterContainer {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-    align-items: center;
-    background-color: #1A1A1D;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #1a1a1d;
 }
 
 .menuInnerContainer {
-    width: 40%;
+  width: 40%;
 }
 
 .button {
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #2979FF;
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    border: none;
-    width: 51%;
-    font-size: 20px;
-    font-weight: 600;
-    max-width:500px;
-    min-width:200px;
-    color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979ff;
+  padding: 20px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  width: 51%;
+  font-size: 20px;
+  font-weight: 600;
+  max-width: 500px;
+  min-width: 200px;
+  color: white;
 }
 
 .mt-20 {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+}
 
 .beg {
-    color:lime;
+  color: lime;
 }
 
 .button:hover {
-    background: blue;
+  background: blue;
 }
 
 .int {
-    color:cyan;
+  color: cyan;
 }
 
 .exp {
-    color:red;
+  color: red;
 }
 
 .leaderboards {
-    color: white;
-    background: green;
+  color: white;
+  background: green;
 }
