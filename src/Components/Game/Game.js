@@ -10,7 +10,6 @@ import {
   secondsToTimer,
   canDoubleClick,
 } from "../../helpers";
-import AddModal from "../LeaderboardEntry/AddModal";
 import Board from "../Board";
 
 import flagIcon from "../../Icons/flag.png";
@@ -145,10 +144,6 @@ const Game = ({ location }) => {
     setFlaggedIndex(flaggedIndex);
   };
 
-  const toggleModal = () => {
-    setModalVisible(false);
-  };
-
   return (
     <div className="gameOuterContainer">
       <div className="header">
@@ -177,13 +172,6 @@ const Game = ({ location }) => {
         ) : (
           <div></div>
         )}
-        <AddModal
-          winner={winner}
-          modalVisible={modalVisible}
-          onClick={toggleModal}
-          score={seconds}
-          bombs={bombs}
-        />
         <button className="button mt-20" onClick={resetGame}>
           Reset
         </button>
