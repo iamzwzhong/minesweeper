@@ -1,3 +1,6 @@
+const dx = [1, -1, 0, 0, 1, -1, 1, -1];
+const dy = [0, 0, 1, -1, 1, -1, -1, 1];
+
 export function calculateWinner(squares) {
   if (!squares) {
     return null;
@@ -34,21 +37,9 @@ export function placeBombs(num_bombs, height, width) {
 }
 
 function updateSquares(squares, x, y, height, width) {
-  let directions = [];
-  const left = [-1, 0];
-  const right = [1, 0];
-  const up = [0, 1];
-  const down = [0, -1];
-  const topleft = [-1, 1];
-  const topright = [1, 1];
-  const downleft = [-1, -1];
-  const downright = [1, -1];
-
-  directions = [left, right, up, down, topleft, topright, downleft, downright];
-
-  for (let i = 0; i < directions.length; i++) {
-    let next_x = x + directions[i][0];
-    let next_y = y + directions[i][1];
+  for (let i = 0; i < 8; i++) {
+    const next_x = x + dx[i];
+    const next_y = y + dy[i];
 
     if (0 <= next_x && next_x < width && 0 <= next_y && next_y < height) {
       let index = next_y * width + next_x;
@@ -67,18 +58,6 @@ function getRandomInt(min, max) {
 }
 
 export function findZeroes(squares, x, y, height, width) {
-  let directions = [];
-  const left = [-1, 0];
-  const right = [1, 0];
-  const up = [0, 1];
-  const down = [0, -1];
-  const topleft = [-1, 1];
-  const topright = [1, 1];
-  const downleft = [-1, -1];
-  const downright = [1, -1];
-
-  directions = [left, right, up, down, topleft, topright, downleft, downright];
-
   let stack = [[x, y]];
   let visited = new Set();
 
@@ -97,9 +76,9 @@ export function findZeroes(squares, x, y, height, width) {
 
     if (squares[index] === null) {
       squares[index] = 0;
-      for (let i = 0; i < directions.length; i++) {
-        let next_x = currx + directions[i][0];
-        let next_y = curry + directions[i][1];
+      for (let i = 0; i < 8; i++) {
+        let next_x = currx + dx[i];
+        let next_y = curry + dy[i];
 
         if (0 <= next_x && next_x < width && 0 <= next_y && next_y < height) {
           let next_index = next_y * width + next_x;
@@ -114,24 +93,13 @@ export function findZeroes(squares, x, y, height, width) {
 }
 
 export function canDoubleClick(squares, x, y, height, width, flagged) {
-  let directions = [];
-  const left = [-1, 0];
-  const right = [1, 0];
-  const up = [0, 1];
-  const down = [0, -1];
-  const topleft = [-1, 1];
-  const topright = [1, 1];
-  const downleft = [-1, -1];
-  const downright = [1, -1];
-
-  directions = [left, right, up, down, topleft, topright, downleft, downright];
   let toClick = [];
   let index = y * width + x;
   let nearbyMines = squares[index];
 
-  for (let i = 0; i < directions.length; i++) {
-    let next_x = x + directions[i][0];
-    let next_y = y + directions[i][1];
+  for (let i = 0; i < 8; i++) {
+    let next_x = x + dx[i];
+    let next_y = y + dy[i];
 
     if (0 <= next_x && next_x < width && 0 <= next_y && next_y < height) {
       index = next_y * width + next_x;
