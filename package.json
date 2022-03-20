@@ -46,6 +46,7 @@
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4"
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.7"
   }
 }
