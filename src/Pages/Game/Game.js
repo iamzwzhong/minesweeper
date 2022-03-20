@@ -10,7 +10,7 @@ import {
   secondsToTimer,
   canDoubleClick,
 } from "../../helpers";
-import Board from "../Board";
+import Board from "../../Components/Board";
 
 import flagIcon from "../../Assets/Icons/flag.png";
 import clockIcon from "../../Assets/Icons/clock.png";

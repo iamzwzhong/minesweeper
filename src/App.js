@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Menu from "./Components/Menu/Menu";
-import Game from "./Components/Game/Game";
+import Menu from "./Pages/Menu/Menu";
+import Game from "./Pages/Game/Game";
 
 const App = () => (
   <Router>
