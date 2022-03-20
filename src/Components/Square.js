@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import DoubleClick from "./DoubleClick";
 
-import flagIcon from "../Icons/flag.png";
-import mineIcon from "../Icons/mine.png";
+import flagIcon from "../Assets/Icons/flag.png";
+import mineIcon from "../Assets/Icons/mine.png";
 
 const colors = {
   1: "blue",

@@ -12,9 +12,9 @@ import {
 } from "../../helpers";
 import Board from "../Board";
 
-import flagIcon from "../../Icons/flag.png";
-import clockIcon from "../../Icons/clock.png";
-import trophyIcon from "../../Icons/trophy.png";
+import flagIcon from "../../Assets/Icons/flag.png";
+import clockIcon from "../../Assets/Icons/clock.png";
+import trophyIcon from "../../Assets/Icons/trophy.png";
 
 import "./Game.css";
 

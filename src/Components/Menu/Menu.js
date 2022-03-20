@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./Menu.css";
-import titlePNG from "../../Icons/title.png";
+import banner from "../../Assets/banner.png";
 
 const Menu = () => {
   return (
     <div className="menuOuterContainer">
       <div className="menuInnerContainer">
-        <img src={titlePNG} />
+        <img src={banner} />
         <Link to={`/game?height=8&width=8&bombs=10`}>
           <button className="button mt-20 beg" type="submit">
             Beginner
