@@ -36,7 +36,7 @@ export function createNewGame(
       return Array(columns)
         .fill(null)
         .map((_, j: number) => {
-          return new Field({ x: i, y: j }, false, 0, false);
+          return new Field({ x: i, y: j }, false, false, 0, false);
         });
     });
   let totalMinesPlaced = 0;
