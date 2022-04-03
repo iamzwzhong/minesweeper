@@ -1,0 +1,130 @@
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.bombs-1 {
+  color: blue;
+}
+.bombs-2 {
+  color: green;
+}
+.bombs-3 {
+  color: red;
+}
+.bombs-4 {
+  color: purple;
+}
+.bombs-5 {
+  color: brown;
+}
+.bombs-6 {
+  color: cyan;
+}
+.bombs-7 {
+  color: black;
+}
+.bombs-8 {
+  color: gray;
+}
+.game-square {
+  height: 90%;
+  width: 90%;
+  border: 2px solid darkblue;
+}
+.game-square-mine {
+  height: 90%;
+  width: 90%;
+  border: 2px solid darkblue;
+  background: lightblue;
+}
+.game-square-detonated {
+  height: 90%;
+  width: 90%;
+  border: 2px solid darkblue;
+  background: red;
+}
+.game-square-opened {
+  background: lightgray;
+  border: 2px solid darkblue;
+  height: 40px;
+  width: 40px;
+  cursor: default;
+  outline: none;
+}
+.game-square-unopened {
+  background: lightblue;
+  border: 2px solid darkblue;
+  height: 40px;
+  width: 40px;
+  outline: none;
+  cursor: pointer;
+}
+.game-square-flagged {
+  height: 90%;
+  width: 90%;
+  border: 2px solid darkblue;
+  background: lightblue;
+}
+.game-outer-container {
+  background-color: #1a1a1d;
+  width: 100%;
+  max-width: 1280px;
+  max-height: 700px;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  background-color: #1a1a1d;
+}
+.banner {
+  width: 50%;
+  min-width: 400px;
+  max-width: 800px;
+  margin-top: 15px;
+}
+.difficulty-button {
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979ff;
+  padding: 15px;
+  margin: 0px 15px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  width: 30%;
+  font-size: 20px;
+  font-weight: 600;
+  max-width: 200px;
+  min-width: 200px;
+  color: white;
+}
+.difficulty-button:hover {
+  background: blue;
+}
+.beg {
+  color: lime;
+}
+.int {
+  color: cyan;
+}
+
+.exp {
+  color: red;
+}
+.icon-img {
+  max-height: 25px;
+  max-width: 25px;
+}
+.icon-container {
+  width: 20%;
+  color: white;
+  display: inline-block;
+  justify-content: center;
+  font-size: 30px;
+}

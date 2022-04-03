@@ -9,7 +9,7 @@ This project is deployed on Heroku [here](https://minesweeper-z.herokuapp.com/).
 ## Functionalities
 
 - Three classic difficulty modes
-  - Beginner: 8x8, 10 bombs
+  - Beginner: 9x9, 10 bombs
   - Intermediate: 16x16, 40 bombs
   - Expert: 16x30, 99 bombs
 - Randomized board generation each attempt
