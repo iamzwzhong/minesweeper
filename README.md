@@ -4,14 +4,14 @@ Minesweeper
 
 ## How To Play
 
-This project is deployed on Github Pages [here](https://iamzwzhong.github.io/minesweeper-clone/).
+This project is deployed on Github Pages [here](https://iamzwzhong.github.io/minesweeper/).
 
 ## Functionalities
 
 - Three classic difficulty modes
-  - Beginner: 9x9, 10 bombs
-  - Intermediate: 16x16, 40 bombs
-  - Expert: 16x30, 99 bombs
+  - Beginner: 9x9, 10 mines
+  - Intermediate: 16x16, 40 mines
+  - Expert: 16x30, 99 mines
 - Randomized board generation each attempt
 - Keeps track of the time for each attempt
 - Ability to place a flag on possible mine locations

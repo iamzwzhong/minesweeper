@@ -14,11 +14,12 @@ import { GameState } from "../../Types/GameState";
 export const Game = (props: GameProps) => {
   const [rows, setRows] = useState(props.rows);
   const [columns, setColumns] = useState(props.columns);
+  const [numMines, setNumMines] = useState(props.numMines);
   const [gameState, setGameState] = useState(
-    createNewGame(rows, columns, props.numBombs)
+    createNewGame(rows, columns, numMines)
   );
   const [started, setStarted] = useState(false);
-  const [flags, setFlags] = useState(props.numBombs);
+  const [flags, setFlags] = useState(numMines);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [timer, setTimer] = useState(setInterval(() => {}));
 
@@ -33,7 +34,7 @@ export const Game = (props: GameProps) => {
   function countFlaggedSquares(gameState: GameState) {
     const add = (a: number, b: number) => a + b;
     return (
-      props.numBombs -
+      numMines -
       gameState.mineField
         .map((row) => {
           return row
@@ -87,12 +88,13 @@ export const Game = (props: GameProps) => {
     clearInterval(timer);
   }
 
-  function startNewGame(rows: number, columns: number, numBombs: number) {
+  function startNewGame(rows: number, columns: number, numMines: number) {
     setRows(rows);
     setColumns(columns);
-    setGameState(createNewGame(rows, columns, numBombs));
+    setNumMines(numMines);
+    setGameState(createNewGame(rows, columns, numMines));
     setStarted(false);
-    setFlags(numBombs);
+    setFlags(numMines);
     setElapsedSeconds(0);
     clearInterval(timer);
     setTimer(setInterval(() => {}));
@@ -140,5 +142,5 @@ export const Game = (props: GameProps) => {
 export interface GameProps {
   rows: number;
   columns: number;
-  numBombs: number;
+  numMines: number;
 }

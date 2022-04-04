@@ -35,7 +35,7 @@ function renderField(
               onDoubleClick(field);
             }
           }}
-          className={`game-square-opened bombs-${field.numMines}`}
+          className={`game-square-opened mines-${field.numMines}`}
         >
           {field.numMines > 0 ? field.numMines : ""}
         </button>

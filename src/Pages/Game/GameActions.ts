@@ -5,7 +5,7 @@ import { Point } from "../../Types/Point";
 const dx = [1, -1, 0, 0, 1, -1, 1, -1];
 const dy = [0, 0, 1, -1, 1, -1, -1, 1];
 
-function setBombsCount(mineField: Field[][]) {
+function setMinesCount(mineField: Field[][]) {
   const numRows = mineField.length;
   const numCols = mineField[0].length;
   for (let r = 0; r < numRows; r++) {
@@ -28,7 +28,7 @@ function setBombsCount(mineField: Field[][]) {
 export function createNewGame(
   rows: number,
   columns: number,
-  numBombs: number
+  numMines: number
 ): GameState {
   let mineField = Array(rows)
     .fill(null)
@@ -40,7 +40,7 @@ export function createNewGame(
         });
     });
   let totalMinesPlaced = 0;
-  while (totalMinesPlaced < numBombs) {
+  while (totalMinesPlaced < numMines) {
     const randX = Math.floor(Math.random() * rows);
     const randY = Math.floor(Math.random() * columns);
     const foundField = mineField[randX][randY];
@@ -49,7 +49,7 @@ export function createNewGame(
       totalMinesPlaced++;
     }
   }
-  setBombsCount(mineField);
+  setMinesCount(mineField);
   return new GameState(mineField, false);
 }
 
@@ -114,14 +114,14 @@ function isCompletedGame(gameState: GameState): boolean {
   const rows = gameState.mineField.length;
   const columns = gameState.mineField[0].length;
   let squaresOpened = 0;
-  let numBombs = 0;
+  let numMines = 0;
   gameState.mineField.forEach((row) => {
     row.forEach((field) => {
-      if (field.isMine) numBombs += 1;
+      if (field.isMine) numMines += 1;
       else if (field.isOpened) squaresOpened += 1;
     });
   });
-  return rows * columns - squaresOpened === numBombs;
+  return rows * columns - squaresOpened === numMines;
 }
 
 export function getSquaresToOpen(gameState: GameState, square: Field): Field[] {
