@@ -115,8 +115,8 @@ function isCompletedGame(gameState: GameState): boolean {
   const columns = gameState.mineField[0].length;
   let squaresOpened = 0;
   let numBombs = 0;
-  gameState.mineField.map((row) => {
-    row.map((field) => {
+  gameState.mineField.forEach((row) => {
+    row.forEach((field) => {
       if (field.isMine) numBombs += 1;
       else if (field.isOpened) squaresOpened += 1;
     });

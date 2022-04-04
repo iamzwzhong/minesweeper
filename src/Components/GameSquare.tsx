@@ -21,9 +21,9 @@ function renderField(
 ) {
   if (field.isOpened) {
     if (field.isMine) {
-      if (field.numMines == -1)
-        return <img src={mineIcon} className="game-square-detonated" />;
-      else return <img src={mineIcon} className="game-square-mine" />;
+      if (field.numMines === -1)
+        return <img src={mineIcon} className="game-square-detonated" alt="" />;
+      else return <img src={mineIcon} className="game-square-mine" alt="" />;
     } else {
       return (
         <button
@@ -45,6 +45,7 @@ function renderField(
     if (field.isFlagged) {
       return (
         <img
+          alt=""
           src={flagIcon}
           className="game-square-flagged"
           onContextMenu={(e) => {

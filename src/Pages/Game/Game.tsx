@@ -121,10 +121,10 @@ export const Game = (props: GameProps) => {
         </button>
       </div>
       <div className="icon-container">
-        <img src={clockIcon} className="icon-img" />
+        <img src={clockIcon} className="icon-img" alt="" />
         {secondsToTimerString(elapsedSeconds)}
         <br></br>
-        <img src={flagIcon} className="icon-img" />
+        <img src={flagIcon} className="icon-img" alt="" />
         {flags}
       </div>
       <MineField
