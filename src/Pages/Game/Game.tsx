@@ -63,6 +63,7 @@ export const Game = (props: GameProps) => {
     for (let i = 0; i < squaresToOpen.length; i++) {
       currGameState = openSquare(currGameState, squaresToOpen[i]);
     }
+    if (currGameState.completed) endGame();
     setGameState(currGameState);
   }
 
