@@ -8,8 +8,14 @@ import {
 } from "./GameActions";
 import clockIcon from "../../Assets/Icons/clock.png";
 import flagIcon from "../../Assets/Icons/flag.png";
+import singleClickEffect from "../../Assets/Audio/SingleClick.mp3";
+import doubleClickEffect from "../../Assets/Audio/DoubleClick.mp3";
+import mineExplodeEffect from "../../Assets/Audio/MineExplode.mp3";
+import flagActionEffect from "../../Assets/Audio/FlagAction.mp3";
+import winEffect from "../../Assets/Audio/Win.mp3";
 import { Field } from "../../Types/Field";
 import { GameState } from "../../Types/GameState";
+import { GameStatus } from "../../Types/GameStatus";
 
 export const Game = (props: GameProps) => {
   const [rows, setRows] = useState(props.rows);
@@ -22,6 +28,32 @@ export const Game = (props: GameProps) => {
   const [flags, setFlags] = useState(numMines);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [timer, setTimer] = useState(setInterval(() => {}));
+
+  function playAudio(audioSource: string) {
+    const audioSrcVolume = (audioSource: string) => {
+      switch (audioSource) {
+        case singleClickEffect || doubleClickEffect:
+          return Number(1);
+        case mineExplodeEffect:
+          return Number(0.15);
+        case flagActionEffect:
+          return Number(0.25);
+        case winEffect:
+          return Number(0.5);
+        default:
+          return Number(1);
+      }
+    };
+
+    const audio = new Audio(audioSource);
+    audio.volume = audioSrcVolume(audioSource);
+    audio.play();
+    audio.onended = function () {
+      audio.src = "";
+      audio.remove();
+      audio.srcObject = null;
+    };
+  }
 
   function startTimer() {
     setTimer(
@@ -53,7 +85,12 @@ export const Game = (props: GameProps) => {
       startTimer();
     }
     const updatedGameState = openSquare(gameState, mineSquare);
-    if (updatedGameState.completed) endGame();
+    playAudio(singleClickEffect);
+    const gameStatus = updatedGameState.status;
+    if (gameStatus !== GameStatus.InProgress) {
+      if (gameStatus === GameStatus.Fail) playAudio(mineExplodeEffect);
+      endGame(gameStatus);
+    }
     setGameState(updatedGameState);
   }
 
@@ -63,12 +100,21 @@ export const Game = (props: GameProps) => {
     for (let i = 0; i < squaresToOpen.length; i++) {
       currGameState = openSquare(currGameState, squaresToOpen[i]);
     }
-    if (currGameState.completed) endGame();
+
+    if (squaresToOpen.length === 1) playAudio(singleClickEffect);
+    else if (squaresToOpen.length > 1) playAudio(doubleClickEffect);
+
+    const gameStatus = currGameState.status;
+    if (gameStatus !== GameStatus.InProgress) {
+      if (gameStatus === GameStatus.Fail) playAudio(mineExplodeEffect);
+      endGame(gameStatus);
+    }
     setGameState(currGameState);
   }
 
   function onRightClick(mineSquare: Field) {
     if ((flags === 0 && mineSquare.isFlagged === true) || flags > 0) {
+      playAudio(flagActionEffect);
       setGameState(flagSquare(gameState, mineSquare));
       setFlags(countFlaggedSquares(gameState));
     }
@@ -85,7 +131,8 @@ export const Game = (props: GameProps) => {
     return `${displayMin}:${displaySec}`;
   }
 
-  function endGame() {
+  function endGame(status: GameStatus) {
+    if (status === GameStatus.Success) playAudio(winEffect);
     clearInterval(timer);
   }
 
@@ -132,9 +179,15 @@ export const Game = (props: GameProps) => {
       </div>
       <MineField
         gameState={gameState}
-        onLeftClick={gameState.completed ? () => {} : onLeftClick}
-        onRightClick={gameState.completed ? () => {} : onRightClick}
-        onDoubleClick={gameState.completed ? () => {} : onDoubleClick}
+        onLeftClick={
+          gameState.status !== GameStatus.InProgress ? () => {} : onLeftClick
+        }
+        onRightClick={
+          gameState.status !== GameStatus.InProgress ? () => {} : onRightClick
+        }
+        onDoubleClick={
+          gameState.status !== GameStatus.InProgress ? () => {} : onDoubleClick
+        }
       />
     </div>
   );

@@ -1,5 +1,6 @@
 import { Field } from "../../Types/Field";
 import { GameState } from "../../Types/GameState";
+import { GameStatus } from "../../Types/GameStatus";
 import { Point } from "../../Types/Point";
 
 const dx = [1, -1, 0, 0, 1, -1, 1, -1];
@@ -50,7 +51,7 @@ export function createNewGame(
     }
   }
   setMinesCount(mineField);
-  return new GameState(mineField, false);
+  return new GameState(mineField, GameStatus.InProgress);
 }
 
 function revealMines(gameState: GameState, square: Field): GameState {
@@ -76,7 +77,7 @@ function revealMines(gameState: GameState, square: Field): GameState {
         }
       });
     }),
-    true
+    GameStatus.Fail
   );
 }
 
@@ -110,7 +111,7 @@ function exploreZeroes(
   }
 }
 
-function isCompletedGame(gameState: GameState): boolean {
+function isCompletedGame(gameState: GameState): GameStatus {
   const rows = gameState.mineField.length;
   const columns = gameState.mineField[0].length;
   let squaresOpened = 0;
@@ -121,7 +122,8 @@ function isCompletedGame(gameState: GameState): boolean {
       else if (field.isOpened) squaresOpened += 1;
     });
   });
-  return rows * columns - squaresOpened === numMines;
+  if (rows * columns - squaresOpened === numMines) return GameStatus.Success;
+  else return GameStatus.InProgress;
 }
 
 export function getSquaresToOpen(gameState: GameState, square: Field): Field[] {
@@ -147,7 +149,12 @@ export function openSquare(gameState: GameState, square: Field): GameState {
   else if (square.isMine) return revealMines(gameState, square);
   else {
     exploreZeroes(gameState, square, new Set());
-    return new GameState(gameState.mineField, isCompletedGame(gameState));
+    return new GameState(
+      gameState.mineField,
+      gameState.status === GameStatus.Fail
+        ? GameStatus.Fail
+        : isCompletedGame(gameState)
+    );
   }
 }
 
@@ -155,5 +162,5 @@ export function flagSquare(gameState: GameState, square: Field): GameState {
   const pos = square.position;
   gameState.mineField[pos.x][pos.y].isFlagged =
     !gameState.mineField[pos.x][pos.y].isFlagged;
-  return new GameState(gameState.mineField, gameState.completed);
+  return new GameState(gameState.mineField, gameState.status);
 }
