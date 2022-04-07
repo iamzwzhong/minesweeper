@@ -20,4 +20,4 @@ This project is deployed on Github Pages [here](https://iamzwzhong.github.io/min
 
 ## Screenshots
 
-![IntermediateGameDemo](https://i.imgur.com/eh85Nnq)
+![IntermediateGameDemo](https://i.imgur.com/eh85Nnq.png)
