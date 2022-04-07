@@ -1,10 +1,11 @@
 # Minesweeper
 
-Minesweeper
+This project is deployed on Github Pages [here](https://iamzwzhong.github.io/minesweeper/).
 
 ## How To Play
-
-This project is deployed on Github Pages [here](https://iamzwzhong.github.io/minesweeper/).
+- Left Click: Open a square
+- Double Left Click: Reveal surrounding squares except ones marked with flags
+- Right Click: Flag or remove flag on squares
 
 ## Functionalities
 
